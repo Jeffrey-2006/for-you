@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NovaLabs | Internship Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="page active" id="page0">
+    <div class="portal">
+      <div class="navbar"><div class="logo">NovaLabs</div><div class="nav-right">Careers</div></div>
+      <div class="content">
+        <h1>Internship Application Status</h1>
+        <p class="sub">Candidate ID: <b>NL-INT-20491</b></p>
+        <div class="card">
+          <h2>Frontend Developer Intern</h2>
+          <ul>
+            <li>Duration: 3 Months | Mode: Remote</li>
+            <li>Stipend: ₹15,000 / month</li>
+            <li>Start Date: 14 Feb 2026</li>
+          </ul>
+          <p class="status">Status: <span>Shortlisted ✅</span></p>
+        </div>
+        <button class="primary" onclick="goToBlackout()">Proceed →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="buffer"><div class="spinner"></div><p style="color:white; margin-top:15px;">Verifying credentials…</p></section>
+  <section class="page" id="warning"><div class="warning-text" onclick="goToHearts()">careful bro 😉</div></section>
+  <section class="page" id="blackout"><div id="heart" class="big-heart">💗<br><span>Click me</span></div></section>
+  <section class="page" id="page1"><div class="chat-container" id="chat"></div></section>
+  <section class="page" id="page2"><div id="finalMessageContainer"></div></section>
+  <section class="page" id="page3"><div id="photo-frame"></div><div id="finalDeclaration"></div></section>
+
+  <section class="page" id="rose-day-page">
+    <div id="stars-container"></div>
+    <div class="night-sky">
+      <div class="rose-wrapper">
+        <img src="rose.png" class="real-rose-img" alt="Red Rose">
+        <div class="petal-hitbox" id="hitbox1" onclick="revealPetal(1, 'You are the most beautiful, cutest and lovely person I know ❤️')"></div>
+        <div class="petal-hitbox" id="hitbox2" onclick="revealPetal(2, 'Your smile makes my darkest nights bright and voice makes me smile out of nowhere✨')"></div>
+        <div class="petal-hitbox" id="hitbox3" onclick="revealPetal(3, 'I am so lucky to have you in my life 🌹')"></div>
+        <div class="petal-hitbox" id="hitbox4" onclick="revealPetal(4, 'Every day with you feels like a dream come true🥰')"></div>
+        <div class="petal-hitbox" id="hitbox5" onclick="revealPetal(5, 'You are my favorite person in the whole universe 🌌')"></div>
+      </div>
+      <div id="petal-message" class="petal-message">There are secrets hidden in the petals...</div>
+    </div>
+  </section>
+
+  <section class="page" id="propose-page">
+  <div class="lift-bg">
+    <div class="smiths-box">
+      <div id="smiths-dialogue">
+        </div>
+      
+      <div class="input-area" id="smiths-input-area">
+        <input type="text" id="smiths-input" placeholder="Type your response...">
+        <button class="primary" onclick="checkSmiths()">Send</button>
+        <p id="smiths-hint" style="color: #ff99bb; margin-top: 10px;"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="val-question-page">
+  <div id="photo-wall-bg"></div> 
+  
+  <div class="proposal-box">
+    <h2>Will you be my Valentine?</h2>
+    <div class="btn-group">
+      <button class="primary" onclick="handleYes()">YES!</button>
+      <button class="primary" id="no-btn" onmouseover="moveNoBtn()">No</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="smash-page">
+  <div class="smash-bg">
+    <h1 class="smash-text">SMASSSHHH! 🥂</h1>
+  </div>
+</section>
+
+  <div id="heart-rain"></div>
+  <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

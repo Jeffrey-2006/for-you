@@ -1,0 +1,193 @@
+/* GLOBAL STYLES */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: "Inter", sans-serif; 
+    height: 100vh; 
+    overflow: hidden; 
+    background: #000; 
+    color: white; 
+}
+
+.page { 
+    position: absolute; 
+    inset: 0; 
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.8s ease; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+}
+.page.active { opacity: 1; pointer-events: auto; }
+
+/* INITIAL PORTAL THEMES */
+#page0, #buffer, #warning { 
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bg.jpg") center/cover no-repeat; 
+}
+.portal { 
+    width: 90%; 
+    max-width: 500px; 
+    background: rgba(255,255,255,0.1); 
+    backdrop-filter: blur(15px); 
+    border-radius: 24px; 
+    border: 1px solid rgba(255,255,255,0.2); 
+    overflow: hidden; 
+}
+.navbar { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; }
+.content { padding: 30px 20px; }
+.card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; margin: 20px 0; }
+.status span { color: #4ade80; font-weight: bold; }
+
+.primary { 
+    background: white; 
+    color: black; 
+    padding: 12px 28px; 
+    border-radius: 50px; 
+    border: none; 
+    cursor: pointer; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    z-index: 100; 
+    margin-top: 10px; 
+}
+.primary:hover { transform: scale(1.05); background: #ff5f9e; color: white; }
+
+/* CHAT & STORY */
+.chat-container, #finalMessageContainer { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 12px; }
+.message { padding: 12px 16px; border-radius: 18px; font-size: 15px; opacity: 0; transform: translateY(10px); transition: 0.4s forwards; }
+.message.show { opacity: 1; transform: translateY(0); }
+.left { align-self: flex-start; background: hsl(309, 72%, 21%); }
+.right { align-self: flex-end; background: #ff5f9e; }
+.final-line { font-size: 1.3rem; opacity: 0; transform: translateY(10px); transition: 1s; text-align: center; margin-bottom: 10px; }
+.final-line.show { opacity: 1; transform: translateY(0); }
+
+/* POLAROIDS (PAGE 3) */
+#page3 { background: linear-gradient(135deg, #4b0082 0%, #ff1493 50%, #2b002b 100%); }
+#photo-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 10px; pointer-events: none; }
+.photo-row { display: flex; justify-content: space-around; width: 100% }
+.framed-photo { 
+    width: 85px; 
+    height: 110px; 
+    border: 4px solid white; 
+    border-bottom: 18px solid white; 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4); 
+    opacity: 0; 
+    transform: rotate(var(--tilt)); 
+    transition: 1.2s; 
+}
+.framed-photo.show { opacity: 1; }
+.huge-love { font-size: 1.6rem; font-weight: 800; text-align: center; padding: 20px; line-height: 1.5; text-shadow: 0 0 15px rgba(0,0,0,0.5); }
+
+/* ROSE PAGE */
+#rose-day-page { background: radial-gradient(circle at center, #5a25a0 0%, #000 100%); }
+.night-sky { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.rose-wrapper { position: relative; width: 280px; height: 400px; display: flex; justify-content: center; }
+.real-rose-img { width: 100%; height: auto; object-fit: contain; animation: sway 5s ease-in-out infinite; filter: drop-shadow(0 0 15px rgba(255,0,0,0.4)); }
+.petal-hitbox { position: absolute; cursor: pointer; border-radius: 50%; z-index: 10; }
+#hitbox1 { width: 70px; height: 70px; top: 50px; left: 30px; }
+#hitbox2 { width: 70px; height: 70px; top: 40px; right: 30px; }
+#hitbox3 { width: 60px; height: 80px; top: 80px; left: 110px; }
+#hitbox4 { width: 80px; height: 60px; top: 130px; left: 40px; }
+#hitbox5 { width: 80px; height: 60px; top: 120px; right: 40px; }
+.petal-message { margin-top: 20px; color: #ff99bb; font-size: 1.2rem; text-align: center; min-height: 3em; max-width: 85%; transition: 0.5s; }
+
+/* PROPOSE PAGE (LIFT SCENE) */
+.lift-bg { 
+    width: 100%; height: 100%; 
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('lift.jpg') center/cover; 
+    display: flex; flex-direction: column; justify-content: center; align-items: center; 
+}
+.fade-in-text { opacity: 0; font-size: 1.3rem; margin: 15px 0; text-align: center; animation: fadeInSlide 1.5s forwards ease-out; }
+.smiths-reveal { font-size: 3rem; font-weight: 900; color: #ff5f9e; text-shadow: 0 0 20px rgba(255, 95, 158, 0.6); }
+
+#smiths-input-area { opacity: 0; transition: opacity 1s ease; display: flex; flex-direction: column; align-items: center; margin-top: 25px;}
+#smiths-input { background: rgba(255,255,255,0.1); border: 1px solid white; color: white; padding: 12px; border-radius: 10px; text-align: center; width: 250px; }
+
+/* FINAL PROPOSAL BOX */
+.proposal-box { 
+    z-index: 10; 
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(8px); 
+    padding: 50px; 
+    border-radius: 30px; 
+    border: 2px solid #ff5f9e; 
+    text-align: center;
+    position: relative; /* Contain the No button */
+    min-width: 300px;
+}
+
+/* FLOATING PHOTO WALL */
+#photo-wall-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: #000; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; }
+.bg-floating-photo { 
+    position: absolute; width: 140px; height: 180px; object-fit: cover; 
+    border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.6); 
+    opacity: 0.6; transition: transform 0.5s ease; 
+    animation: slowFloat 8s infinite alternate ease-in-out; 
+}
+
+/* SMASH PAGE */
+#smash-page {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('us_final.jpg') center/cover no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+.smash-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.smash-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.smash-text {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 20px #ff5f9e, 0 0 40px #ff5f9e;
+    transform: rotate(-5deg);
+    animation: punchIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slowFloat { from { transform: translate(0, 0) rotate(var(--rot, -5deg)); } to { transform: translate(15px, 25px) rotate(var(--rot, 5deg)); } }
+@keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes punchIn { 0% { transform: scale(0) rotate(-20deg); opacity: 0; } 100% { transform: scale(1) rotate(-5deg); opacity: 1; } }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+.spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+.falling-heart { position: fixed; top: -10%; z-index: 999; animation: fall linear forwards; pointer-events: none; }
+.big-heart { font-size: 50px; color: hotpink; cursor: pointer; text-align: center; }
+
+/* MEDIA QUERIES */
+@media (max-width: 600px) {
+    .smash-text { font-size: 3rem; }
+    .smiths-reveal { font-size: 2rem; }
+    .huge-love { font-size: 1.2rem; }
+}
+
+/* HIDDEN UTILITIES */
+.final-photo-container { display: none; }
+
+#finalDeclaration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px; /* Space between the text and the button */
+}
+
+/* Ensure the big message doesn't take up 100% height so the button can fit */
+.huge-love {
+    margin-bottom: 20px;
+    max-width: 90%;
+}
